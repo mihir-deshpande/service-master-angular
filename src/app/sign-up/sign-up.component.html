@@ -1,0 +1,22 @@
+<h1>Sign up - Reactive form</h1>
+<form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+  <label for="firstName">First name</label><br>
+  <input type="text" formControlName="firstName" id="firstName"><br>
+  <div *ngIf="signUpForm.controls.firstName.touched && signUpForm.controls.firstName.errors">{{signUpForm.controls.firstName.errors|json}}</div>
+  <label for="lastName">Last name</label><br>
+  <input type="text" formControlName="lastName" id="lastName"><br>
+  <div *ngIf="signUpForm.controls.lastName.touched && signUpForm.controls.lastName.errors">{{signUpForm.controls.lastName.errors|json}}</div>
+  <label for="email">Email</label><br>
+  <input type="email" formControlName="email" id="email"><br>
+  <div *ngIf="signUpForm.controls.email.touched && signUpForm.controls.email.errors">{{signUpForm.controls.email.errors|json}}</div>
+  <label for="password">Password</label><br>
+  <input type="password" formControlName="password" id="password"><br>
+  <div *ngIf="signUpForm.controls.password.touched && signUpForm.controls.password.errors">{{signUpForm.controls.password.errors|json}}</div>
+  <label for="type">Type</label><br>
+  <select formControlName="type" id="type">
+    <option selected>Select</option>
+    <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>
+  </select><br>
+  <div *ngIf="signUpForm.controls.type.touched && signUpForm.controls.type.errors">{{signUpForm.controls.type.errors|json}}</div>
+  <button type="submit" [disabled]="signUpForm.invalid">Sign In</button>
+</form>
