@@ -1,38 +1,3 @@
-<header class='mb-5'>
-  <nav class="navbar navbar-expand-lg navbar-dark header-bg scrolling-navbar py-2">
-    <a class="navbar-brand text-dark" routerLink="/">
-      <img src="../assets/images/service-master-logo.png" alt="my-little-tribe-logo" class='w-75'/>
-    </a>
-    <button class="navbar-toggler" type="button" (click)="navbarCollapsed = !navbarCollapsed">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <div class="collapse navbar-collapse" [class.show]="!navbarCollapsed">
-      <ul class="navbar-nav mr-auto fw-bold">
-        <ng-container *ngIf="isLoggedIn">
-          <ng-container *ngIf="userType === 'Admin'">
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/admin/users">Users</a></li>
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/admin/add-service">Add service</a></li>
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/admin/services">Services</a></li>
-          </ng-container>
-          <ng-container *ngIf="userType === 'Customer'">
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/customer/services">Services</a></li>
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/customer/bookings">Bookings</a></li>
-          </ng-container>
-          <ng-container *ngIf="userType === 'Provider'">
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/provider/services">Services</a></li>
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/provider/registered-services">Registered Services</a></li>
-            <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/provider/bookings">Bookings</a></li>
-          </ng-container>
-          <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" (click)="signOut()">Sign out of {{userName}}</a></li>
-        </ng-container>
-        <ng-container *ngIf="!isLoggedIn">
-          <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/sign-up">Sign up</a></li>
-          <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/sign-in">Sign in</a></li>
-        </ng-container>
-      </ul>
-    </div>
-  </nav>
-</header>
-
+<app-header></app-header>
 <router-outlet></router-outlet>
 <app-footer></app-footer>
