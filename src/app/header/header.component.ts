@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-header',
@@ -12,7 +13,7 @@ export class HeaderComponent {
   userName: string = "";
 
 
-  constructor() {
+  constructor(private router: Router) {
     // Add any required initialization, such as checking local storage for user information.
     this.checkLoginStatus();
   }
