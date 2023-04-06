@@ -34,7 +34,7 @@ export class SignInComponent {
           localStorage.setItem('user_type', response.user_type);
           localStorage.setItem('user_name', response.user_name);
           alert('Signed in successfully');
-          this.router.navigate(['/customer/services']);
+          this.router.navigate(['/']).then(() => {});
         });
     } else {
       alert('Invalid form');
