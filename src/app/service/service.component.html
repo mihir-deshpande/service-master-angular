@@ -1,0 +1,12 @@
+
+<!-- services.component.html -->
+<div *ngFor="let service of services" class="card mb-4">
+  <div class="card-header bg-dark text-white">
+    {{ service.service.name }}
+  </div>
+  <div class="card-body">
+    <p class="card-text mb-3">{{ service.service.description }}</p>
+    <!-- Add your conditions here for showing buttons -->
+    <span class="btn btn-primary btn-service-master-bg text-dark" (click)="handleBook(service)">Book</span>
+  </div>
+</div>
