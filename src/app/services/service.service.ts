@@ -3,6 +3,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { environment } from '../../environments/environment';
 
+// Interface for the service
 export interface Service {
   service: {
     _id: string;
@@ -18,6 +19,7 @@ export interface Service {
   ];
 }
 
+// Service for the services component
 @Injectable({
   providedIn: 'root',
 })
