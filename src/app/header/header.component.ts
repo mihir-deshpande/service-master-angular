@@ -9,7 +9,7 @@ import {Router} from "@angular/router";
 export class HeaderComponent {
   navbarCollapsed = true;
   isLoggedIn = false;
-  userType!: 'Admin' | 'Customer' | 'Provider';
+  userType!: 'ADMIN' | 'CUSTOMER' | 'PROVIDER';
   userName: string = "";
 
 
@@ -22,7 +22,7 @@ export class HeaderComponent {
     const token = localStorage.getItem("token");
     if (token) {
       this.isLoggedIn = true;
-      this.userType = localStorage.getItem("user_type") as 'Admin' | 'Customer' | 'Provider';
+      this.userType = localStorage.getItem("user_type") as 'ADMIN' | 'CUSTOMER' | 'PROVIDER';
       this.userName = localStorage.getItem("user_name") || "";
     } else {
       this.isLoggedIn = false;
@@ -34,7 +34,8 @@ export class HeaderComponent {
     localStorage.removeItem("user_type");
     localStorage.removeItem("user_name");
     this.checkLoginStatus();
-    // Add any required navigation, such as redirecting to the home page.
+    // redirect to home page
+    this.router.navigate(['/']);
   }
 
 }

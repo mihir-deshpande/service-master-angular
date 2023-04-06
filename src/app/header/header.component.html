@@ -9,16 +9,16 @@
     <div class="collapse navbar-collapse" [class.show]="!navbarCollapsed">
       <ul class="navbar-nav mr-auto fw-bold">
         <ng-container *ngIf="isLoggedIn">
-          <ng-container *ngIf="userType === 'Admin'">
+          <ng-container *ngIf="userType === 'ADMIN'">
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/admin/users">Users</a></li>
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/admin/add-service">Add service</a></li>
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/admin/services">Services</a></li>
           </ng-container>
-          <ng-container *ngIf="userType === 'Customer'">
+          <ng-container *ngIf="userType === 'CUSTOMER'">
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/customer/services">Services</a></li>
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/customer/bookings">Bookings</a></li>
           </ng-container>
-          <ng-container *ngIf="userType === 'Provider'">
+          <ng-container *ngIf="userType === 'PROVIDER'">
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/provider/services">Services</a></li>
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/provider/registered-services">Registered Services</a></li>
             <li class="nav-item active mr-sm-3"><a class="nav-link text-dark" routerLink="/provider/bookings">Bookings</a></li>
