@@ -9,7 +9,7 @@ import {ServiceComponent} from "./service/service.component";
 const routes: Routes = [
   {path:'sign-up', component:SignUpComponent},
   {path:'sign-in', component:SignInComponent},
-  {path:'customer/services', component:ServiceComponent},
+  {path:'services', component:ServiceComponent},
   {path:'',component:HomeComponent},
 ];
 @NgModule({
