@@ -19,7 +19,9 @@ export class SignInComponent {
 
   signIn() {
     if (this.signInForm.valid) {
+      // Get the form values
       const { email, password } = this.signInForm.value;
+      // Call the login method of AuthService
       this.authService
         .login(email, password)
         .pipe(
@@ -28,14 +30,13 @@ export class SignInComponent {
             return throwError(error);
           }),
         )
+        // Subscribe to the observable and set the token and user type in localStorage
         .subscribe((response: IAuth) => {
           localStorage.setItem('token', response.token);
           localStorage.setItem('user_type', response.user_type);
           localStorage.setItem('user_name', response.user_name);
           alert('Signed in successfully');
-          this.router.navigate(['/']).then(() => {
-            this.changeDetector.detectChanges(); // Trigger change detection after navigation
-          });
+          this.router.navigateByUrl('');
         });
     } else {
       alert('Invalid form');

@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
 
@@ -7,39 +7,24 @@ import { AuthService } from '../services/auth.service';
   templateUrl: './header.component.html',
   styleUrls: ['./header.component.css'],
 })
-export class HeaderComponent implements OnInit{
+export class HeaderComponent implements OnInit {
   navbarCollapsed = true;
   isLoggedIn = false;
-  userType!: 'ADMIN' | 'CUSTOMER' | 'PROVIDER';
+  userType!: 'ADMIN' | 'CUSTOMER' | 'PROVIDER' | undefined;
   userName: string = '';
 
-  constructor(private router: Router, private authService: AuthService) {
-    // Add any required initialization, such as checking local storage for user information.
-    this.checkLoginStatus();
-  }
+  constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.isLoggedIn$.subscribe((res) => {
-      this.isLoggedIn = res;
-      this.checkLoginStatus();
+    this.authService.loginStatus$.subscribe((status) => {
+      this.isLoggedIn = status.isLoggedIn;
+      this.userType = status.userType;
+      this.userName = status.userName || '';
     });
-  }
-
-  checkLoginStatus() {
-    const token = localStorage.getItem('token');
-    if (token) {
-      this.isLoggedIn = true;
-      this.userType = localStorage.getItem('user_type') as 'ADMIN' | 'CUSTOMER' | 'PROVIDER';
-      this.userName = localStorage.getItem('user_name') || '';
-    } else {
-      this.isLoggedIn = false;
-    }
   }
 
   signOut() {
     this.authService.logout();
-    this.checkLoginStatus();
-    // redirect to home page
     this.router.navigate(['/']);
   }
 }
