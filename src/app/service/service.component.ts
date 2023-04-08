@@ -1,48 +1,33 @@
 import { Component, OnInit } from '@angular/core';
 import { Service } from './service';
+import { ServiceService } from '../services/service.service';
 
 @Component({
   selector: 'app-service',
   templateUrl: './service.component.html',
   styleUrls: ['./service.component.css']
 })
-export class ServiceComponent {
-  services: Service[] = [
-    // Dummy data for services
-    {
-      service: {
-        _id: '1',
-        name: 'Service 1',
-        description: 'Description for Service 1',
-        providers: ['Provider 1', 'Provider 2']
-      },
-      providers: [
-        { _id: '1', },
-        { _id: '2' }
-      ]
-    },
-    {
-      service: {
-        _id: '2',
-        name: 'Service 2',
-        description: 'Description for Service 2',
-        providers: ['Provider 1', 'Provider 2']
-      },
-      providers: [
-        { _id: '1', },
-        { _id: '2' }
-      ]
-    }
-  ];
+export class ServiceComponent implements OnInit { // Implement OnInit
+  services: Service[] = []; // Initialize the services array
 
-  constructor() {}
+  constructor(private serviceService: ServiceService) {} // Inject the ServiceService
 
-  ngOnInit(): void {}
+  ngOnInit(): void {
+    // Call the service to get the services
+    this.serviceService.getServices().subscribe(
+      (services) => {
+        this.services = services;
+      },
+      (error) => {
+        console.error(error);
+        alert(JSON.stringify(error));
+      }
+    );
+  }
 
   handleBook(service: Service): void {
     // Handle the booking logic here
   }
 
-
-
+  // Add other methods like handleDelete, handleRegister, etc.
 }
