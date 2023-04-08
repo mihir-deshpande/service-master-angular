@@ -1,0 +1,19 @@
+<div *ngFor="let booking of bookings" class="card mb-4">
+  <div class="card-header bg-dark text-white">
+    {{booking.service.name}}
+  </div>
+  <div class="card-body">
+    <p class="card-text mb-3">{{booking.service.description}}</p>
+    <p><strong>Description: </strong>{{booking.booking.booking_description}}</p>
+    <p><strong>Address: </strong>{{booking.booking.booking_address}}</p>
+    <p><strong>Date: </strong>{{booking.booking.booking_date | date:'short'}}</p>
+    <p><strong>Provider: </strong>{{booking.provider}}</p>
+    <span class="btn btn-primary btn-service-master-bg text-dark mr-3" (click)="rescheduleVisible[booking.booking.id] = !rescheduleVisible[booking.booking.id]">Reschedule</span>
+    <span (click)="handleDelete(booking.booking.id)" class="btn btn-danger text-white">Cancel</span>
+    <div class="form-group my-4" *ngIf="rescheduleVisible[booking.booking.id]">
+      <label for="date-field" class="mb-3 input-label">New date</label>
+      <input #newDateInput name="booking_date" type="datetime-local" class="form-control input-field" (change)="newDates[booking.booking.id] = newDateInput.value" id="date-field" />
+      <span class='btn btn-primary btn-service-master-bg text-dark mt-3' (click)="handleReschedule(booking.booking.id, newDates[booking.booking.id])">Reschedule</span>
+    </div>
+  </div>
+</div>
