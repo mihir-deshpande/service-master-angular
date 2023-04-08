@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Service } from './service';
+import { Service } from '../service/service'; // Import the Service interface
 import { ServiceService } from '../services/service.service';
+import {NavigationExtras, Router} from "@angular/router";
 
 @Component({
   selector: 'app-service',
@@ -10,7 +11,7 @@ import { ServiceService } from '../services/service.service';
 export class ServiceComponent implements OnInit { // Implement OnInit
   services: Service[] = []; // Initialize the services array
 
-  constructor(private serviceService: ServiceService) {} // Inject the ServiceService
+  constructor(private router: Router, private serviceService: ServiceService) {} // Inject the ServiceService
 
   ngOnInit(): void {
     // Call the service to get the services
@@ -26,8 +27,8 @@ export class ServiceComponent implements OnInit { // Implement OnInit
   }
 
   handleBook(service: Service): void {
-    // Handle the booking logic here
-  }
+    this.serviceService.setSelectedService(service);
+    this.router.navigate(['customer/book']);
 
-  // Add other methods like handleDelete, handleRegister, etc.
+  }
 }

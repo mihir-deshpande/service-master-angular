@@ -6,7 +6,10 @@ export interface Service {
     description: string;
     providers: string[];
   };
-  providers: {
-    _id: string;
-  }[];
+  providers: [
+    {
+      _id: string;
+      name: string;
+    }
+  ];
 }

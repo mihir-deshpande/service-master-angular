@@ -1,0 +1,67 @@
+<div class="container-fluid">
+  <div class="row justify-content-center signup-container align-items-center my-sm-5 my-0">
+    <div class="col-xxl-5 col-xl-6 col-lg-7 col-md-8 col-sm-9 col-12">
+      <div class="card registration-card m-sm-0 my-2">
+        <div class="class-header btn-service-master-bg pt-3 pb-2">
+          <div class="row text-center">
+            <h3 class="mb-4 fw-bold">{{ service.service.name }}</h3>
+          </div>
+        </div>
+        <div class="card-body px-sm-5 px-4">
+          <form [formGroup]="addBookingForm" (ngSubmit)="onSubmit()">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group mb-4">
+                  <label for="urgency-field" class="mb-3 input-label-dd">Urgency</label>
+                  <select
+                    formControlName="urgency"
+                    class="form-control input-field"
+                    id="urgency-field">
+                    <option selected>Select</option>
+                    <option *ngFor="let options of urgencyOptions" [value]="options">{{options}}</option>
+                  </select>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="description-field" class="mb-3 input-label">Description</label>
+                  <textarea                     formControlName="booking_description"
+                                                class="form-control input-field"
+                                                id="description-field"></textarea>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="address-field" class="mb-3 input-label">Address</label>
+                  <input
+                    formControlName="booking_address"
+                    type="text"
+                    class="form-control input-field"
+                    id="address-field" />
+                </div>
+                <div class="form-group mb-4">
+                  <label for="date-field" class="mb-3 input-label">Date</label>
+                  <input
+                    formControlName="booking_date"
+                    type="datetime-local"
+                    class="form-control input-field"
+                    id="date-field" />
+                </div>
+                <div class="form-group mb-4">
+                  <label for="provider-field" class="mb-3 input-label-dd">Provider</label>
+                  <select
+                    formControlName="provider"
+                    class="form-control input-field-dd"
+                    id="provider-field">
+                    <option value="" class="option-disabled">Select</option>
+                    <option *ngFor="let provider of providers" [value]="provider._id">{{ provider.name }}</option>
+                  </select>
+                </div>
+                <button
+                  type="submit"
+                  class="btn btn-primary col-12 mt-2 mb-4 btn-service-master-bg text-dark">Book</button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
