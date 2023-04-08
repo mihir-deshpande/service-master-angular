@@ -36,7 +36,6 @@ export class ServiceService {
 
     const userType = localStorage.getItem('user_type');
     const token = localStorage.getItem('token');
-    console.log(token);
     const headers = new HttpHeaders().set('Authorization', `Bearer ${token}`);
 
     if (userType === 'PROVIDER') {
@@ -62,6 +61,7 @@ export class ServiceService {
     localStorage.removeItem('selectedService');
     this.serviceSource.next(null);
   }
+
   // Method to get the selected service as an Observable
   getSelectedService(): Observable<Service | null> {
     const service = JSON.parse(localStorage.getItem('selectedService') || '{}');

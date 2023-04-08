@@ -12,6 +12,7 @@ import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ServiceComponent } from './service/service.component';
 import { AddBookingComponent } from './booking/add-booking/add-booking.component';
+import { ListBookingComponent } from './booking/list-booking/list-booking.component';
 
 @NgModule({
   declarations: [
@@ -22,7 +23,8 @@ import { AddBookingComponent } from './booking/add-booking/add-booking.component
     HeaderComponent,
     HomeComponent,
     ServiceComponent,
-    AddBookingComponent
+    AddBookingComponent,
+    ListBookingComponent
   ],
   imports: [
     BrowserModule,
