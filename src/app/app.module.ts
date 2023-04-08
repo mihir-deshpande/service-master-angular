@@ -11,6 +11,8 @@ import { FooterComponent } from './footer/footer.component';
 import { HeaderComponent } from './header/header.component';
 import { HomeComponent } from './home/home.component';
 import { ServiceComponent } from './service/service.component';
+import { AddBookingComponent } from './booking/add-booking/add-booking.component';
+import { ListBookingComponent } from './booking/list-booking/list-booking.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ServiceComponent } from './service/service.component';
     FooterComponent,
     HeaderComponent,
     HomeComponent,
-    ServiceComponent
+    ServiceComponent,
+    AddBookingComponent,
+    ListBookingComponent
   ],
   imports: [
     BrowserModule,
