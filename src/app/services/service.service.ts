@@ -27,7 +27,8 @@ export class ServiceService {
   apiURL = environment.UrlString; // URL to web api
 
   // Add a new BehaviorSubject to store the selected service
-  private selectedService = new BehaviorSubject<Service | null>(null);
+  private serviceSource = new BehaviorSubject<Service | null>(null);
+  selectedService = this.serviceSource.asObservable();
   constructor(private http: HttpClient) {}
 
   // Get all services from the api
@@ -51,12 +52,21 @@ export class ServiceService {
 
   // Method to set the selected service
   setSelectedService(service: Service): void {
-    this.selectedService.next(service);
+    localStorage.setItem('selectedService', JSON.stringify(service));
+    this.serviceSource.next(service);
   }
 
+
+  // Clear the selected service
+  clearSelectedService(): void {
+    localStorage.removeItem('selectedService');
+    this.serviceSource.next(null);
+  }
   // Method to get the selected service as an Observable
   getSelectedService(): Observable<Service | null> {
-    return this.selectedService.asObservable();
+    const service = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    this.serviceSource.next(service);
+    return this.serviceSource;
   }
 
 }

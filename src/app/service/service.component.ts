@@ -27,8 +27,7 @@ export class ServiceComponent implements OnInit { // Implement OnInit
   }
 
   handleBook(service: Service): void {
-    this.serviceService.setSelectedService(service);
-    this.router.navigate(['customer/book']);
-
+      this.serviceService.setSelectedService(service);
+      this.router.navigate(['customer/book']);
   }
 }

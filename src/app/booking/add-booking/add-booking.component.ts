@@ -43,12 +43,11 @@ export class AddBookingComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.serviceService.getSelectedService().subscribe((service: Service | null) => {
-      if (service) {
-        this.service = service;
-        this.providers = this.service.providers;
-      }
-    });
+    const service = JSON.parse(localStorage.getItem('selectedService') || '{}');
+    if (service) {
+      this.service = service;
+      this.providers = this.service.providers;
+    }
   }
 
   onSubmit() {
