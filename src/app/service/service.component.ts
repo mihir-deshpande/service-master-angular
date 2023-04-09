@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
-import { Service } from '../service/service'; // Import the Service interface
+import { Service } from './service'; // Import the Service interface
 import { ServiceService } from '../services/service.service';
-import {NavigationExtras, Router} from "@angular/router";
+import {Router} from "@angular/router";
 
 @Component({
   selector: 'app-service',
@@ -15,19 +15,19 @@ export class ServiceComponent implements OnInit { // Implement OnInit
 
   ngOnInit(): void {
     // Call the service to get the services
-    this.serviceService.getServices().subscribe(
-      (services) => {
+    this.serviceService.getServices().subscribe({
+      next: (services) => {
         this.services = services;
       },
-      (error) => {
+      error: (error) => {
         console.error(error);
         alert(JSON.stringify(error));
       }
-    );
+    });
   }
 
   handleBook(service: Service): void {
       this.serviceService.setSelectedService(service);
-      this.router.navigate(['customer/book']);
+      this.router.navigate(['customer/book']).then(() => {});
   }
 }
