@@ -23,7 +23,7 @@ export class SignInComponent {
       const { email, password } = this.signInForm.value;
       // Call the login method of AuthService
       this.authService
-        .login(email, password)
+        .signIn(email, password)
         .pipe(
           catchError((error) => {
             alert('Invalid email or password');

@@ -13,26 +13,26 @@ export interface IAuth {
   providedIn: 'root',
 })
 export class AuthService {
-  private _loginStatus$ = new BehaviorSubject<{
-    isLoggedIn: boolean;
-    userType?: 'ADMIN' | 'CUSTOMER' | 'PROVIDER';
+  private _signInStatus$ = new BehaviorSubject<{
+    isSignedIn: boolean;
+    userType?: string;
     userName?: string;
-  }>({ isLoggedIn: false });
+  }>({ isSignedIn: false });
 
-  loginStatus$ = this._loginStatus$.asObservable();
+  signInStatus$ = this._signInStatus$.asObservable();
 
   private url: string = environment.UrlString;
 
   constructor(private http: HttpClient) {
     const token = localStorage.getItem('token');
     if (token) {
-      const userType = localStorage.getItem('user_type') as 'ADMIN' | 'CUSTOMER' | 'PROVIDER';
-      const userName = localStorage.getItem('user_name') || '';
-      this._loginStatus$.next({ isLoggedIn: true, userType, userName });
+      const userType = localStorage.getItem('user_type') || undefined;
+      const userName = localStorage.getItem('user_name') || undefined
+      this._signInStatus$.next({ isSignedIn: true, userType, userName });
     }
   }
 
-  login(email: string | null | undefined, password: string | null | undefined): Observable<IAuth> {
+  signIn(email: string | null | undefined, password: string | null | undefined): Observable<IAuth> {
     return this.http
       .post<IAuth>(`${this.url}/authentication`, {
         email: email,
@@ -40,8 +40,8 @@ export class AuthService {
       })
       .pipe(
         tap((response: any) => {
-          this._loginStatus$.next({
-            isLoggedIn: true,
+          this._signInStatus$.next({
+            isSignedIn: true,
             userType: response.user_type,
             userName: response.user_name,
           });
@@ -52,8 +52,8 @@ export class AuthService {
       );
   }
 
-  logout() {
-    this._loginStatus$.next({ isLoggedIn: false });
+  signOut() {
+    this._signInStatus$.next({ isSignedIn: false });
     localStorage.clear();
   }
 }
