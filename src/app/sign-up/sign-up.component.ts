@@ -3,8 +3,9 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {catchError, throwError} from "rxjs";
+import {environment} from "../../environments/environment";
 
-export const userTypes = ["ADMIN", "CUSTOMER", "PROVIDER"];
+export const userTypes = [environment.AdminString, environment.CustomerString, environment.ProviderString];
 
 function userTypeValidator(formControl: FormControl) : { type: string } | null {
   if (userTypes.includes(formControl.value)) {

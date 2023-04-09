@@ -4,7 +4,6 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 import {BookingService} from "../../services/booking.service";
 import { ServiceService } from "../../services/service.service";
-import { Service } from "../../services/service.service";
 
 
 interface Provider {
@@ -67,7 +66,7 @@ export class AddBookingComponent implements OnInit {
         )
         .subscribe(() => {
           alert('Booked');
-          this.router.navigate(['/customer/bookings']);
+          this.router.navigate(['/customer/bookings']).then(() => {});
         });
     } else {
       alert('Please fill in all fields');

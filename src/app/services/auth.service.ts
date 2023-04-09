@@ -1,6 +1,6 @@
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
 
 export interface IAuth {
@@ -54,9 +54,6 @@ export class AuthService {
 
   logout() {
     this._loginStatus$.next({ isLoggedIn: false });
-    localStorage.removeItem('token');
-    localStorage.removeItem('user_type');
-    localStorage.removeItem('user_name');
-    localStorage.removeItem('selectedService');
+    localStorage.clear();
   }
 }
