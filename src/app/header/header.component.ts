@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { AuthService } from '../services/auth.service';
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-header',
@@ -9,22 +10,24 @@ import { AuthService } from '../services/auth.service';
 })
 export class HeaderComponent implements OnInit {
   navbarCollapsed = true;
-  isLoggedIn = false;
-  userType!: 'ADMIN' | 'CUSTOMER' | 'PROVIDER' | undefined;
-  userName: string = '';
+  isSignedIn = false;
+  userType!: string | undefined;
+  userName: string | undefined;
 
   constructor(private router: Router, private authService: AuthService) {}
 
   ngOnInit() {
-    this.authService.loginStatus$.subscribe((status) => {
-      this.isLoggedIn = status.isLoggedIn;
+    this.authService.signInStatus$.subscribe((status) => {
+      this.isSignedIn = status.isSignedIn;
       this.userType = status.userType;
-      this.userName = status.userName || '';
+      this.userName = status.userName;
     });
   }
 
   signOut() {
-    this.authService.logout();
-    this.router.navigate(['/']);
+    this.authService.signOut();
+    this.router.navigate(['/']).then(() => {});
   }
+
+  protected readonly environment = environment;
 }

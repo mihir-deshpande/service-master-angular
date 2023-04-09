@@ -13,6 +13,11 @@ import { HomeComponent } from './home/home.component';
 import { ServiceComponent } from './service/service.component';
 import { AddBookingComponent } from './booking/add-booking/add-booking.component';
 import { ListBookingComponent } from './booking/list-booking/list-booking.component';
+import { NotFoundComponent } from './not-found/not-found.component';
+import { UsersComponent } from './users/users.component';
+import { UpdateUserComponent } from './update-user/update-user.component';
+import { AddServiceComponent } from './add-service/add-service.component';
+import { RegisteredServicesComponent } from './registered-services/registered-services.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +29,12 @@ import { ListBookingComponent } from './booking/list-booking/list-booking.compon
     HomeComponent,
     ServiceComponent,
     AddBookingComponent,
-    ListBookingComponent
+    ListBookingComponent,
+    NotFoundComponent,
+    UsersComponent,
+    UpdateUserComponent,
+    AddServiceComponent,
+    RegisteredServicesComponent
   ],
   imports: [
     BrowserModule,

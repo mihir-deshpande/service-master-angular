@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { environment } from '../../environments/environment';
-import {Observable, of} from "rxjs";
-import {Service} from "./service.service";
+import {Observable} from "rxjs";
 
+
+interface booking {
+  _id: string;
+  booking_date: string;
+  booking_address: string;
+  booking_description: string;
+}
 
 export interface Booking {
-  booking: any;
+  booking: booking;
   service: any;
   customer: any;
   provider: any;
