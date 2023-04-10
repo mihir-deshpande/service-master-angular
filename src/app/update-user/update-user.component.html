@@ -1,1 +1,65 @@
-<p>update-user works!</p>
+<div class="container-fluid">
+  <div class="row justify-content-center signup-container align-items-center my-sm-5 my-0">
+    <div class="col-xxl-4 col-xl-5 col-lg-6 col-md-7 col-sm-8 col-12">
+      <div class="card registration-card m-sm-0 my-2">
+        <div class="card-body px-sm-5 px-4">
+          <div class="row text-center">
+
+          </div>
+          <div class="row text-center">
+            <div class="col-12">
+              <p class="heading">Update!</p>
+            </div>
+          </div>
+          <form [formGroup]="updateUserForm" (ngSubmit)="updateUser()">
+            <div class="row">
+              <div class="col-12">
+                <div class="form-group mb-4">
+                  <label for="firstName" class="mb-3 input-label">First Name</label>
+                  <input type="text" formControlName="firstName" id="firstName" class="form-control input-field" />
+                  <div *ngIf="updateUserForm.controls.firstName.touched && updateUserForm.controls.firstName.errors">
+                    <span style="color: red">* First name is required</span>
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="lastName" class="mb-3 input-label">Last Name</label>
+                  <input type="text" formControlName="lastName" id="lastName" class="form-control input-field" />
+                  <div *ngIf="updateUserForm.controls.lastName.touched && updateUserForm.controls.lastName.errors">
+                    <span style="color: red">* Last name is required</span>
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="email" class="mb-3 input-label">Email</label>
+                  <input type="email" formControlName="email" id="email" class="form-control input-field" />
+                  <div *ngIf="updateUserForm.controls.email.touched && updateUserForm.controls.email.errors">
+                    <span style="color: red">* Email is required</span>
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="password" class="mb-3 input-label">Password</label>
+                  <input type="password" formControlName="password" id="password" class="form-control input-field" />
+                  <div *ngIf="updateUserForm.controls.password.touched && updateUserForm.controls.password.errors">
+                    <span style="color: red">* Password is required</span>
+                  </div>
+                </div>
+                <div class="form-group mb-4">
+                  <label for="type" class="mb-3 input-label">Type</label>
+                  <select formControlName="type" id="type" class="form-control input-field">
+                    <option>Select</option>
+                    <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>
+                  </select>
+                  <div *ngIf="updateUserForm.controls.type.touched && updateUserForm.controls.type.errors">
+                    <span style="color: red">* Type is required</span>
+                  </div>
+                </div>
+                <button type="submit" [disabled]="updateUserForm.invalid" class="btn btn-primary col-12 mt-2 mb-4 btn-service-master-bg text-dark">
+                  Update
+                </button>
+              </div>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

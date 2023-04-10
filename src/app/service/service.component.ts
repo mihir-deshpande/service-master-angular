@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { Service } from './service'; // Import the Service interface
-import { ServiceService } from '../services/service.service';
+import {Service, ServiceService} from '../services/service.service';
 import {Router} from "@angular/router";
+import {AuthService} from "../services/auth.service";
+import {environment} from "../../environments/environment";
 
 @Component({
   selector: 'app-service',
@@ -10,24 +11,46 @@ import {Router} from "@angular/router";
 })
 export class ServiceComponent implements OnInit { // Implement OnInit
   services: Service[] = []; // Initialize the services array
+  userType: string | undefined;
 
-  constructor(private router: Router, private serviceService: ServiceService) {} // Inject the ServiceService
+  constructor(private router: Router, private serviceService: ServiceService, private authService: AuthService) {} // Inject the ServiceService
 
   ngOnInit(): void {
     // Call the service to get the services
     this.serviceService.getServices().subscribe({
       next: (services) => {
         this.services = services;
-      },
-      error: (error) => {
+      }, error: (error) => {
+        console.error(error);
+        alert(JSON.stringify(error));
+      }
+    });
+
+    this.authService.signInStatus$.subscribe({
+      next: (status) => {
+        this.userType = status.userType;
+      }
+    });
+  }
+
+  handleBook(service: Service): void {
+      this.router.navigateByUrl('customer/book', {state: service}).then(() => {});
+  }
+
+  protected readonly environment = environment;
+
+  handleDelete(_id: string) {
+    this.serviceService.deleteService(_id).subscribe({
+      next: () => {
+        this.services = this.services.filter((service) => service.service._id !== _id);
+      }, error: (error) => {
         console.error(error);
         alert(JSON.stringify(error));
       }
     });
   }
 
-  handleBook(service: Service): void {
-      this.serviceService.setSelectedService(service);
-      this.router.navigate(['customer/book']).then(() => {});
+  handleRegister(_id: string) {
+
   }
 }

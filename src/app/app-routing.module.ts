@@ -23,7 +23,7 @@ const routes: Routes = [
   {path:'sign-in', component: SignInComponent, canActivate: [signedOutGuard]},
   {path:'admin', canActivate: [signedInGuard], canActivateChild: [adminGuard], children: [
       {path:'users', component: UsersComponent},
-      {path:'update-user/:_id', component: UpdateUserComponent},
+      {path:'update-user', component: UpdateUserComponent},
       {path:'add-service', component: AddServiceComponent},
       {path:'services', component: ServiceComponent},
     ]},
