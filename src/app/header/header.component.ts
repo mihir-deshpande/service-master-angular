@@ -26,7 +26,7 @@ export class HeaderComponent implements OnInit {
 
   signOut() {
     this.authService.signOut();
-    this.router.navigate(['/']).then(() => {});
+    this.router.navigateByUrl('/').then(() => {});
   }
 
   protected readonly environment = environment;
