@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService, Booking } from '../../services/booking.service';
+import {AuthService} from "../../services/auth.service";
 
 @Component({
   selector: 'app-list-booking',
@@ -12,16 +13,17 @@ export class ListBookingComponent implements OnInit {
 
   rescheduleVisible: { [key: string]: boolean } = {};
 
-  constructor(private bookingService: BookingService) { }
+  constructor(private bookingService: BookingService, private authService: AuthService) { }
 
   ngOnInit(): void {
     this.fetchBookings();
   }
 
   fetchBookings(): void {
-    const userType = localStorage.getItem('user_type') || '';
-    this.bookingService.getBookingsByUserType(userType)
-      .subscribe(bookings => this.bookings = bookings);
+    this.authService.signInStatus$.subscribe(status => {
+      this.bookingService.getBookingsByUserType(status.userType)
+        .subscribe(bookings => this.bookings = bookings);
+    });
   }
 
   handleDelete(id: string): void {

@@ -17,6 +17,7 @@ export class AuthService {
     isSignedIn: boolean;
     userType?: string;
     userName?: string;
+    token?: string;
   }>({ isSignedIn: false });
 
   signInStatus$ = this._signInStatus$.asObservable();
@@ -27,8 +28,8 @@ export class AuthService {
     const token = localStorage.getItem('token');
     if (token) {
       const userType = localStorage.getItem('user_type') || undefined;
-      const userName = localStorage.getItem('user_name') || undefined
-      this._signInStatus$.next({ isSignedIn: true, userType, userName });
+      const userName = localStorage.getItem('user_name') || undefined;
+      this._signInStatus$.next({ isSignedIn: true, userType, userName, token });
     }
   }
 
@@ -44,6 +45,7 @@ export class AuthService {
             isSignedIn: true,
             userType: response.user_type,
             userName: response.user_name,
+            token: response.token,
           });
           localStorage.setItem('token', response.token);
           localStorage.setItem('user_type', response.user_type);

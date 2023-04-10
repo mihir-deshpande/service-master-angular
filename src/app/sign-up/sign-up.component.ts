@@ -5,21 +5,22 @@ import {HttpClient} from "@angular/common/http";
 import {catchError, throwError} from "rxjs";
 import {environment} from "../../environments/environment";
 
-export const userTypes = [environment.AdminString, environment.CustomerString, environment.ProviderString];
+export const userTypes = [environment.AdminString, environment.CustomerString, environment.ProviderString],
+  userTypeValidator = (formControl: FormControl): { type: string } | null => {
+    if (userTypes.includes(formControl.value)) {
+      return null;
+    } else {
+      return {"type": "invalid"};
+    }
+  };
 
-function userTypeValidator(formControl: FormControl) : { type: string } | null {
-  if (userTypes.includes(formControl.value)) {
-    return null;
-  } else {
-    return {"type": "invalid"};
-  }
-}
 @Component({
   selector: 'app-sign-up',
   templateUrl: './sign-up.component.html',
   styleUrls: ['./sign-up.component.css']
 })
 export class SignUpComponent {
+  apiUrl = environment.UrlString;
   userTypes = userTypes;
   signUpForm = new FormGroup({
     firstName: new FormControl<string>('', [Validators.required]),
@@ -34,7 +35,7 @@ export class SignUpComponent {
   signUp() {
     if (this.signUpForm.valid) {
       console.log(this.signUpForm.value);
-      this.http.post('https://service-master-api.cyclic.app/user', {
+      this.http.post(`${this.apiUrl}/user`, {
         'first-name': this.signUpForm.value.firstName,
         'last-name': this.signUpForm.value.lastName,
         'email': this.signUpForm.value.email,
@@ -49,7 +50,7 @@ export class SignUpComponent {
       ).subscribe((value) => {
         console.log(value);
         alert("Signed up successfully");
-        this.router.navigate(['/sign-in']).then(() => {});
+        this.router.navigateByUrl('sign-in').then(() => {});
       });
     } else {
       alert("Invalid form")

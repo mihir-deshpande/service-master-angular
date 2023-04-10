@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Service } from './service'; // Import the Service interface
-import { ServiceService } from '../services/service.service';
+import {Service, ServiceService} from '../services/service.service';
 import {Router} from "@angular/router";
 
 @Component({
@@ -18,8 +17,7 @@ export class ServiceComponent implements OnInit { // Implement OnInit
     this.serviceService.getServices().subscribe({
       next: (services) => {
         this.services = services;
-      },
-      error: (error) => {
+      }, error: (error) => {
         console.error(error);
         alert(JSON.stringify(error));
       }
@@ -27,7 +25,6 @@ export class ServiceComponent implements OnInit { // Implement OnInit
   }
 
   handleBook(service: Service): void {
-      this.serviceService.setSelectedService(service);
-      this.router.navigate(['customer/book']).then(() => {});
+      this.router.navigateByUrl('customer/book', {state: service}).then(() => {});
   }
 }

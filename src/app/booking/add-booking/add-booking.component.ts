@@ -1,9 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { catchError, throwError } from 'rxjs';
 import {BookingService} from "../../services/booking.service";
-import { ServiceService } from "../../services/service.service";
+import {Service} from "../../services/service.service";
 
 
 interface Provider {
@@ -18,10 +18,10 @@ export const urgencyOptions = ["ASAP", "Anytime", "1 week"];
   templateUrl: './add-booking.component.html',
   styleUrls: ['./add-booking.component.css'],
 })
-export class AddBookingComponent implements OnInit {
-  service: any;
+export class AddBookingComponent {
+  service: Service = history.state;
 
-  providers: Provider[] = [];
+  providers: Provider[] = this.service.providers;
 
   urgencyOptions = urgencyOptions;
 
@@ -37,17 +37,8 @@ export class AddBookingComponent implements OnInit {
   constructor(
     private route: ActivatedRoute,
     private router: Router,
-    private bookingService: BookingService,
-    private serviceService: ServiceService
+    private bookingService: BookingService
   ) {}
-
-  ngOnInit(): void {
-    const service = JSON.parse(localStorage.getItem('selectedService') || '{}');
-    if (service) {
-      this.service = service;
-      this.providers = this.service.providers;
-    }
-  }
 
   onSubmit() {
     if (this.addBookingForm.valid) {
@@ -66,7 +57,7 @@ export class AddBookingComponent implements OnInit {
         )
         .subscribe(() => {
           alert('Booked');
-          this.router.navigate(['/customer/bookings']).then(() => {});
+          this.router.navigateByUrl('customer/bookings').then(() => {});
         });
     } else {
       alert('Please fill in all fields');

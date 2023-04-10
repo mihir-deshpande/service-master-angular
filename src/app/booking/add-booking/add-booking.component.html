@@ -4,7 +4,7 @@
       <div class="card registration-card m-sm-0 my-2">
         <div class="class-header btn-service-master-bg pt-3 pb-2">
           <div class="row text-center">
-            <h3 class="mb-4 fw-bold">{{ service?.service.name }}</h3>
+            <h3 class="mb-4 fw-bold">{{ service.service.name }}</h3>
           </div>
         </div>
         <div class="card-body px-sm-5 px-4">
@@ -55,7 +55,7 @@
                 </div>
                 <button
                   type="submit"
-                  class="btn btn-primary col-12 mt-2 mb-4 btn-service-master-bg text-dark">Book</button>
+                  class="btn btn-primary col-12 mt-2 mb-4 btn-service-master-bg text-dark" [disabled]="addBookingForm.invalid">Book</button>
               </div>
             </div>
           </form>
