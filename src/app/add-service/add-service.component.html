@@ -1,1 +1,78 @@
-<p>add-service works!</p>
+<div>
+<form [formGroup]="addServiceForm" (ngSubmit)="addService()">
+  <div>
+    <label for="name-input">Name</label>
+    <input
+      type="text"
+      id="name-input"
+      placeholder="Enter Service Name"
+      formControlName="name"
+    />
+    <div *ngIf="addServiceForm.controls.name.invalid && addServiceForm.controls.name.touched">
+      <div *ngIf="addServiceForm.controls.name.errors">
+        Name is required
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="description-input">Description</label>
+    <input
+      type="text"
+      id="description-input"
+      placeholder="Enter Service Description"
+      formControlName="description"
+    />
+    <div *ngIf="addServiceForm.controls.description.invalid && addServiceForm.controls.description.touched">
+      <div *ngIf="addServiceForm.controls.description.errors">
+        Description is required
+      </div>
+    </div>
+  </div>
+  <div>
+    <label for="providers-input">Providers</label>
+    <input
+      type="text"
+      id="providers-input"
+      placeholder="Enter comma separated provider IDs"
+      formControlName="providers"
+    />
+  </div>
+  <div>
+    <input  [disabled]="addServiceForm.invalid" type="submit" value="Add Service" />
+  </div>
+</form>
+<div>
+  <div>
+    <div>
+      <table>
+        <thead>
+        <tr>
+          <th>ID</th>
+          <th>Name</th>
+          <th>Description</th>
+          <th>Providers</th>
+          <th></th>
+        </tr>
+        </thead>
+        <tbody *ngFor="let service of services">
+          <tr>
+            <td>{{service.service._id}}</td>
+            <td>{{service.service.name}}</td>
+            <td>{{service.service.description}}</td>
+            <td>
+              <ul>
+                <li *ngFor="let provider of service.providers">
+                  {{provider.name}}
+                </li>
+              </ul>
+            </td>
+            <td>
+              <button (click)="handleDelete(service.service._id)">Delete</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+</div>

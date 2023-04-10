@@ -1,8 +1,9 @@
-import { Injectable } from '@angular/core';
+import {Injectable, Provider} from '@angular/core';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import {BehaviorSubject, Observable, switchMap} from 'rxjs';
 import { environment } from '../../environments/environment';
 import {AuthService} from "./auth.service";
+import {FormControl, ɵTypedOrUntyped} from "@angular/forms";
 
 // Interface for the service
 export interface Service {
@@ -65,4 +66,17 @@ export class ServiceService {
   //   this.serviceSource.next(service);
   //   return this.serviceSource;
   // }
+  deleteService(_id: string) {
+    return this.authService.signInStatus$.pipe(switchMap((data) => {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${data.token}`);
+      return this.http.delete(`${this.apiURL}/service/${_id}`, { headers });
+    }));
+  }
+
+  addService(service: any | Service): Observable<Service> {
+    return this.authService.signInStatus$.pipe(switchMap((data) => {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${data.token}`);
+      return this.http.post<Service>(`${this.apiURL}/service/`, service, { headers });
+    }));
+  }
 }
