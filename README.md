@@ -1,27 +1,44 @@
-# AngularProjectServiceMaster
+# Service Master
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 15.2.4.
+Service Master is a user-friendly application that allows homeowners to easily book house renovating services. With Service Master, customers can easily find and book services for their home renovation needs. The application has been developed using Angular, and it provides a responsive and intuitive interface for a seamless user experience.
 
-## Development server
+[Angular front-end](https://service-master-angular.web.app/)
 
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The application will automatically reload if you change any of the source files.
+[Express back-end](https://service-master-api.cyclic.app)
 
-## Code scaffolding
 
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
+## Features
 
-## Build
+Service Master has the following features:
 
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory.
+### User Management
 
-## Running unit tests
+- User sign up, sign out, authorization and authentication.
+- User management with the ability to create, read, update, and delete user information.
 
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
+### Service Booking Management
 
-## Running end-to-end tests
+- Customers can easily book services for their home renovation needs, including the ability to create, read, update, and delete bookings.
+- Customers can view their booking history.
+- Customer can reschedule their bookings.
 
-Run `ng e2e` to execute the end-to-end tests via a platform of your choice. To use this command, you need to first add a package that implements end-to-end testing capabilities.
+### Service Provider Portal
 
-## Further help
+- Providers can register to a service and view their registered services.
+- Providers can cancel bookings and manage their service offerings.
 
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI Overview and Command Reference](https://angular.io/cli) page.
+
+## Technologies Used
+
+- Angular.js
+- Node.js & Express.js
+- Bootstrap
+- Firebase
+
+## Work Division
+
+- Tuan worked on the User Management, Service Provider portal, and the CRUD for users on the backend.
+- Mihir worked on the Service Booking Management and the CRUD for services on the backend.
+- Swapnil worked on the template for the app and the CRUD for bookings on the backend.
+
+

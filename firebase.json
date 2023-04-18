@@ -1,0 +1,11 @@
+{
+  "hosting": {
+    "site": "service-master-angular",
+    "public": "dist/angular-project-service-master",
+    "ignore": [
+      "firebase.json",
+      "**/.*",
+      "**/node_modules/**"
+    ]
+  }
+}
