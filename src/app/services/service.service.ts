@@ -47,25 +47,13 @@ export class ServiceService {
     }));
   }
 
-  // Method to set the selected service
-  // setSelectedService(service: Service): void {
-  //   localStorage.setItem('selectedService', JSON.stringify(service));
-  //   this.serviceSource.next(service);
-  // }
+  getRegisteredServices(): Observable<Service[]> {
+    return this.authService.signInStatus$.pipe(switchMap((data) => {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${data.token}`);
+      return this.http.get<Service[]>(`${this.apiURL}/service/provider/registered`, { headers });
+    }));
+  }
 
-
-  // Clear the selected service
-  // clearSelectedService(): void {
-  //   localStorage.removeItem('selectedService');
-  //   this.serviceSource.next(null);
-  // }
-
-  // Method to get the selected service as an Observable
-  // getSelectedService(): Observable<Service | null> {
-  //   const service = JSON.parse(localStorage.getItem('selectedService') || '{}');
-  //   this.serviceSource.next(service);
-  //   return this.serviceSource;
-  // }
   deleteService(_id: string) {
     return this.authService.signInStatus$.pipe(switchMap((data) => {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${data.token}`);
@@ -77,6 +65,20 @@ export class ServiceService {
     return this.authService.signInStatus$.pipe(switchMap((data) => {
       const headers = new HttpHeaders().set('Authorization', `Bearer ${data.token}`);
       return this.http.post<Service>(`${this.apiURL}/service/`, service, { headers });
+    }));
+  }
+
+  registerService(_id: string) {
+    return this.authService.signInStatus$.pipe(switchMap((data) => {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${data.token}`);
+      return this.http.put(`${this.apiURL}/service/provider/${_id}`, {}, { headers });
+    }));
+  }
+
+  unregisterService(_id: string) {
+    return this.authService.signInStatus$.pipe(switchMap((data) => {
+      const headers = new HttpHeaders().set('Authorization', `Bearer ${data.token}`);
+      return this.http.delete(`${this.apiURL}/service/provider/${_id}`, { headers });
     }));
   }
 }

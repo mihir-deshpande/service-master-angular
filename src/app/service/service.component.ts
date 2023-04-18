@@ -51,6 +51,13 @@ export class ServiceComponent implements OnInit { // Implement OnInit
   }
 
   handleRegister(_id: string) {
-
+    this.serviceService.registerService(_id).subscribe({
+      next: () => {
+        this.router.navigateByUrl('provider/registered-services').then(() => {});
+      }, error: (error) => {
+        console.error(error);
+        alert(JSON.stringify(error));
+      }
+    });
   }
 }
