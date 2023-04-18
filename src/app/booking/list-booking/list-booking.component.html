@@ -7,7 +7,7 @@
     <p><strong>Description: </strong>{{booking.booking.booking_description}}</p>
     <p><strong>Address: </strong>{{booking.booking.booking_address}}</p>
     <p><strong>Date: </strong>{{booking.booking.booking_date | date:'short'}}</p>
-    <p><strong>Provider: </strong>{{booking.provider}}</p>
+    <p><strong *ngIf="userType === environment.CustomerString">Provider: </strong><strong *ngIf="userType === environment.ProviderString">Customer: </strong>{{booking.provider}}</p>
     <span class="btn btn-primary btn-service-master-bg text-dark mr-3" (click)="rescheduleVisible[booking.booking._id] = !rescheduleVisible[booking.booking._id]">Reschedule</span>
     <span (click)="handleDelete(booking.booking._id)" class="btn btn-danger text-white">Cancel</span>
     <div class="form-group my-4" *ngIf="rescheduleVisible[booking.booking._id]">

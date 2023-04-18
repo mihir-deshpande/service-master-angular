@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { BookingService, Booking } from '../../services/booking.service';
 import {AuthService} from "../../services/auth.service";
+import {environment} from "../../../environments/environment";
 
 @Component({
   selector: 'app-list-booking',
@@ -10,6 +11,7 @@ import {AuthService} from "../../services/auth.service";
 export class ListBookingComponent implements OnInit {
   bookings: Booking[] = [];
   newDates: { [key: string]: string } = {};
+  userType: string | undefined;
 
   rescheduleVisible: { [key: string]: boolean } = {};
 
@@ -17,6 +19,11 @@ export class ListBookingComponent implements OnInit {
 
   ngOnInit(): void {
     this.fetchBookings();
+    this.authService.signInStatus$.subscribe({
+      next: (status) => {
+        this.userType = status.userType;
+      }
+    });
   }
 
   fetchBookings(): void {
@@ -31,6 +38,11 @@ export class ListBookingComponent implements OnInit {
   }
 
   handleReschedule(id: string, newDate: string): void {
-    this.bookingService.updateBookingDate(id, newDate).subscribe(() => this.fetchBookings());
+    this.bookingService.updateBookingDate(id, newDate).subscribe(() => {
+      this.fetchBookings()
+      this.rescheduleVisible[id] = false;
+    });
   }
+
+  protected readonly environment = environment;
 }
