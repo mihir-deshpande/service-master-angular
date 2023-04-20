@@ -34,7 +34,7 @@ import { RegisteredServicesComponent } from './registered-services/registered-se
     UsersComponent,
     UpdateUserComponent,
     AddServiceComponent,
-    RegisteredServicesComponent
+    RegisteredServicesComponent,
   ],
   imports: [
     BrowserModule,
