@@ -1,16 +1,16 @@
 import { Component } from '@angular/core';
-import {FormControl, FormGroup, Validators} from "@angular/forms";
+import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
 import {catchError, throwError} from "rxjs";
 import {environment} from "../../environments/environment";
 
 export const userTypes = [environment.AdminString, environment.CustomerString, environment.ProviderString],
-  userTypeValidator = (formControl: FormControl): { type: string } | null => {
-    if (userTypes.includes(formControl.value)) {
+  userTypeValidator: ValidatorFn = (control: AbstractControl): ValidationErrors | null => {
+    if (userTypes.includes(control.value)) {
       return null;
     } else {
-      return {"type": "invalid"};
+      return { type: 'invalid' };
     }
   };
 
