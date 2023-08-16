@@ -10,6 +10,9 @@ import {Router} from "@angular/router";
 export class UsersComponent implements OnInit {
   users: User[] = [];
 
+  constructor(private userService: UserService, private router: Router) {
+  }
+
   deleteUser(_id: any) {
     this.userService.deleteUser(_id).subscribe({
       next: () => {
@@ -21,8 +24,6 @@ export class UsersComponent implements OnInit {
       }
     });
   }
-
-  constructor(private userService: UserService, private router: Router) { }
 
   ngOnInit(): void {
     this.userService.getUsers().subscribe({
@@ -37,6 +38,7 @@ export class UsersComponent implements OnInit {
   }
 
   updateUser(user: User) {
-    this.router.navigateByUrl('admin/update-user', {state: user}).then(() => {});
+    this.router.navigateByUrl('admin/update-user', {state: user}).then(() => {
+    });
   }
 }

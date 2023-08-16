@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import {Injectable} from '@angular/core';
 import {environment} from "../../environments/environment";
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {AuthService} from "./auth.service";
@@ -12,14 +12,15 @@ export interface User {
   email: any;
   type: any;
 }
+
 @Injectable({
   providedIn: 'root'
 })
 export class UserService {
   apiUrl = environment.UrlString;
 
-  constructor(private http: HttpClient, private authService: AuthService) { }
-
+  constructor(private http: HttpClient, private authService: AuthService) {
+  }
 
 
   getUsers() {

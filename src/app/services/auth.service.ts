@@ -1,7 +1,7 @@
-import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, tap } from 'rxjs';
-import { HttpClient } from '@angular/common/http';
-import { environment } from '../../environments/environment';
+import {Injectable} from '@angular/core';
+import {BehaviorSubject, Observable, tap} from 'rxjs';
+import {HttpClient} from '@angular/common/http';
+import {environment} from '../../environments/environment';
 
 export interface IAuth {
   token: string;
@@ -18,7 +18,7 @@ export class AuthService {
     userType?: string;
     userName?: string;
     token?: string;
-  }>({ isSignedIn: false });
+  }>({isSignedIn: false});
 
   signInStatus$ = this._signInStatus$.asObservable();
 
@@ -29,7 +29,7 @@ export class AuthService {
     if (token) {
       const userType = localStorage.getItem('user_type') || undefined;
       const userName = localStorage.getItem('user_name') || undefined;
-      this._signInStatus$.next({ isSignedIn: true, userType, userName, token });
+      this._signInStatus$.next({isSignedIn: true, userType, userName, token});
     }
   }
 
@@ -55,7 +55,7 @@ export class AuthService {
   }
 
   signOut() {
-    this._signInStatus$.next({ isSignedIn: false });
+    this._signInStatus$.next({isSignedIn: false});
     localStorage.clear();
   }
 }

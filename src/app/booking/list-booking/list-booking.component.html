@@ -1,5 +1,5 @@
 <!-- Spinner -->
-<div class="text-center" *ngIf="loading">
+<div *ngIf="loading" class="text-center">
   <div class="spinner-border text-primary" role="status">
     <span class="sr-only">Loading...</span>
   </div>
@@ -17,14 +17,19 @@
       <p><strong>Address: </strong>{{ booking.booking.booking_address }}</p>
       <p><strong>Date: </strong>{{ booking.booking.booking_date | date: 'short' }}</p>
       <p>
-        <strong *ngIf="userType === environment.CustomerString">Provider: </strong><strong *ngIf="userType === environment.ProviderString">Customer: </strong>{{ booking.provider }}
+        <strong *ngIf="userType === environment.CustomerString">Provider: </strong><strong
+        *ngIf="userType === environment.ProviderString">Customer: </strong>{{ booking.provider }}
       </p>
-      <span class="btn btn-primary btn-service-master-bg text-dark mr-3" (click)="rescheduleVisible[booking.booking._id] = !rescheduleVisible[booking.booking._id]">Reschedule</span>
+      <span (click)="rescheduleVisible[booking.booking._id] = !rescheduleVisible[booking.booking._id]"
+            class="btn btn-primary btn-service-master-bg text-dark mr-3">Reschedule</span>
       <span (click)="handleDelete(booking.booking._id)" class="btn btn-danger text-white">Cancel</span>
-      <div class="form-group my-4" *ngIf="rescheduleVisible[booking.booking._id]">
-        <label for="date-field" class="mb-3 input-label">New date</label>
-        <input #newDateInput name="booking_date" type="datetime-local" class="form-control input-field" (change)="newDates[booking.booking._id]    = newDateInput.value" id="date-field" />
-        <span class='btn btn-primary btn-service-master-bg text-dark mt-3' (click)="handleReschedule(booking.booking._id, newDates[booking.booking._id])">Reschedule</span>
+      <div *ngIf="rescheduleVisible[booking.booking._id]" class="form-group my-4">
+        <label class="mb-3 input-label" for="date-field">New date</label>
+        <input #newDateInput (change)="newDates[booking.booking._id]    = newDateInput.value"
+               class="form-control input-field" id="date-field"
+               name="booking_date" type="datetime-local"/>
+        <span (click)="handleReschedule(booking.booking._id, newDates[booking.booking._id])"
+              class='btn btn-primary btn-service-master-bg text-dark mt-3'>Reschedule</span>
       </div>
     </div>
   </div>

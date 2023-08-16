@@ -6,7 +6,6 @@ Service Master is a user-friendly application that allows homeowners to easily b
 
 [Express back-end](https://service-master-api.cyclic.app)
 
-
 ## Features
 
 Service Master has the following features:
@@ -26,7 +25,6 @@ Service Master has the following features:
 
 - Providers can register to a service and view their registered services.
 - Providers can cancel bookings and manage their service offerings.
-
 
 ## Technologies Used
 

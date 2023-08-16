@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import {Component} from '@angular/core';
 import {AbstractControl, FormControl, FormGroup, ValidationErrors, ValidatorFn, Validators} from "@angular/forms";
 import {Router} from "@angular/router";
 import {HttpClient} from "@angular/common/http";
@@ -10,7 +10,7 @@ export const userTypes = [environment.AdminString, environment.CustomerString, e
     if (userTypes.includes(control.value)) {
       return null;
     } else {
-      return { type: 'invalid' };
+      return {type: 'invalid'};
     }
   };
 
@@ -29,6 +29,7 @@ export class SignUpComponent {
     password: new FormControl<string>('', [Validators.required]),
     type: new FormControl<string>('', [Validators.required, userTypeValidator])
   })
+
   constructor(private router: Router, private http: HttpClient) {
   }
 
@@ -50,7 +51,8 @@ export class SignUpComponent {
       ).subscribe((value) => {
         console.log(value);
         alert("Signed up successfully");
-        this.router.navigateByUrl('sign-in').then(() => {});
+        this.router.navigateByUrl('sign-in').then(() => {
+        });
       });
     } else {
       alert("Invalid form")

@@ -1,63 +1,63 @@
 <div>
-<form [formGroup]="addServiceForm" (ngSubmit)="addService()" class="mb-5">
-  <div class="form-group">
-    <label for="name-input">Name</label>
-    <input
-      type="text"
-      id="name-input"
-      placeholder="Enter Service Name"
-      formControlName="name"
-      class="form-control"
-    />
-    <div *ngIf="addServiceForm.controls.name.invalid && addServiceForm.controls.name.touched">
-      <div *ngIf="addServiceForm.controls.name.errors">
-        Name is required
+  <form (ngSubmit)="addService()" [formGroup]="addServiceForm" class="mb-5">
+    <div class="form-group">
+      <label for="name-input">Name</label>
+      <input
+        class="form-control"
+        formControlName="name"
+        id="name-input"
+        placeholder="Enter Service Name"
+        type="text"
+      />
+      <div *ngIf="addServiceForm.controls.name.invalid && addServiceForm.controls.name.touched">
+        <div *ngIf="addServiceForm.controls.name.errors">
+          Name is required
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="description-input">Description</label>
-    <input
-      type="text"
-      id="description-input"
-      placeholder="Enter Service Description"
-      formControlName="description"
-      class="form-control"
-    />
-    <div *ngIf="addServiceForm.controls.description.invalid && addServiceForm.controls.description.touched">
-      <div *ngIf="addServiceForm.controls.description.errors">
-        Description is required
+    <div class="form-group">
+      <label for="description-input">Description</label>
+      <input
+        class="form-control"
+        formControlName="description"
+        id="description-input"
+        placeholder="Enter Service Description"
+        type="text"
+      />
+      <div *ngIf="addServiceForm.controls.description.invalid && addServiceForm.controls.description.touched">
+        <div *ngIf="addServiceForm.controls.description.errors">
+          Description is required
+        </div>
       </div>
     </div>
-  </div>
-  <div class="form-group">
-    <label for="providers-input">Providers</label>
-    <input
-      type="text"
-      id="providers-input"
-      placeholder="Enter comma separated provider IDs"
-      formControlName="providers"
-      class="form-control"
-    />
-  </div>
-  <div>
-    <input  [disabled]="addServiceForm.invalid" type="submit" value="Add Service" />
-  </div>
-</form>
-<div>
+    <div class="form-group">
+      <label for="providers-input">Providers</label>
+      <input
+        class="form-control"
+        formControlName="providers"
+        id="providers-input"
+        placeholder="Enter comma separated provider IDs"
+        type="text"
+      />
+    </div>
+    <div>
+      <input [disabled]="addServiceForm.invalid" type="submit" value="Add Service"/>
+    </div>
+  </form>
   <div>
     <div>
-      <table class="table table-striped">
-        <thead class="bg-dark text-white">
-        <tr>
-          <th>ID</th>
-          <th>Name</th>
-          <th>Description</th>
-          <th>Providers</th>
-          <th></th>
-        </tr>
-        </thead>
-        <tbody *ngFor="let service of services">
+      <div>
+        <table class="table table-striped">
+          <thead class="bg-dark text-white">
+          <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Description</th>
+            <th>Providers</th>
+            <th></th>
+          </tr>
+          </thead>
+          <tbody *ngFor="let service of services">
           <tr>
             <td class="col-3">{{service.service._id}}</td>
             <td class="col-3">{{service.service.name}}</td>
@@ -73,9 +73,9 @@
               <button (click)="handleDelete(service.service._id)" class="btn btn-danger">Delete</button>
             </td>
           </tr>
-        </tbody>
-      </table>
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-</div>
 </div>
