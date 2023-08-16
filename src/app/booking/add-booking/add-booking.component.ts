@@ -1,7 +1,7 @@
-import { Component } from '@angular/core';
-import { ActivatedRoute, Router } from '@angular/router';
-import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { catchError, throwError } from 'rxjs';
+import {Component} from '@angular/core';
+import {ActivatedRoute, Router} from '@angular/router';
+import {FormControl, FormGroup, Validators} from '@angular/forms';
+import {catchError, throwError} from 'rxjs';
 import {BookingService} from "../../services/booking.service";
 import {Service} from "../../services/service.service";
 
@@ -38,7 +38,8 @@ export class AddBookingComponent {
     private route: ActivatedRoute,
     private router: Router,
     private bookingService: BookingService
-  ) {}
+  ) {
+  }
 
   onSubmit() {
     if (this.addBookingForm.valid) {
@@ -57,7 +58,8 @@ export class AddBookingComponent {
         )
         .subscribe(() => {
           alert('Booked');
-          this.router.navigateByUrl('customer/bookings').then(() => {});
+          this.router.navigateByUrl('customer/bookings').then(() => {
+          });
         });
     } else {
       alert('Please fill in all fields');

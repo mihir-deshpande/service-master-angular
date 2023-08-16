@@ -1,26 +1,28 @@
 <div class="container">
   <table class="table table-striped">
     <thead class="bg-dark text-white">
-      <tr>
-        <th>ID</th>
-        <th>Email</th>
-        <th>First name</th>
-        <th>Last name</th>
-        <th>Type</th>
-        <th></th>
-        <th></th>
-      </tr>
+    <tr>
+      <th>ID</th>
+      <th>Email</th>
+      <th>First name</th>
+      <th>Last name</th>
+      <th>Type</th>
+      <th></th>
+      <th></th>
+    </tr>
     </thead>
     <tbody>
-      <tr *ngFor="let user of users">
-        <td>{{user._id}}</td>
-        <td>{{user.email}}</td>
-        <td>{{user.first_name}}</td>
-        <td>{{user.last_name}}</td>
-        <td>{{user.type}}</td>
-        <td><button (click)="deleteUser(user._id)" class="btn btn-danger">DELETE</button></td>
-        <td><a (click)="updateUser(user)" class="btn btn-service-master-bg">UPDATE</a></td>
-      </tr>
+    <tr *ngFor="let user of users">
+      <td>{{user._id}}</td>
+      <td>{{user.email}}</td>
+      <td>{{user.first_name}}</td>
+      <td>{{user.last_name}}</td>
+      <td>{{user.type}}</td>
+      <td>
+        <button (click)="deleteUser(user._id)" class="btn btn-danger">DELETE</button>
+      </td>
+      <td><a (click)="updateUser(user)" class="btn btn-service-master-bg">UPDATE</a></td>
+    </tr>
     </tbody>
   </table>
 </div>

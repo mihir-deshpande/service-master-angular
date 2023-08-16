@@ -1,6 +1,6 @@
-import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { AuthService } from '../services/auth.service';
+import {Component, OnInit} from '@angular/core';
+import {Router} from '@angular/router';
+import {AuthService} from '../services/auth.service';
 import {environment} from "../../environments/environment";
 
 @Component({
@@ -13,8 +13,10 @@ export class HeaderComponent implements OnInit {
   isSignedIn = false;
   userType!: string | undefined;
   userName: string | undefined;
+  protected readonly environment = environment;
 
-  constructor(private router: Router, private authService: AuthService) {}
+  constructor(private router: Router, private authService: AuthService) {
+  }
 
   ngOnInit() {
     this.authService.signInStatus$.subscribe((status) => {
@@ -26,8 +28,7 @@ export class HeaderComponent implements OnInit {
 
   signOut() {
     this.authService.signOut();
-    this.router.navigateByUrl('/').then(() => {});
+    this.router.navigateByUrl('/').then(() => {
+    });
   }
-
-  protected readonly environment = environment;
 }

@@ -53,22 +53,22 @@ code {
   monospace;
 }
 
-.btn-service-master-bg{
+.btn-service-master-bg {
   background-color: #E7A811 !important;
 }
 
-.header-bg, .footer-bg{
+.header-bg, .footer-bg {
   background-color: lightgray !important;
 }
 
-.bg-dark{
+.bg-dark {
   background-color: #000 !important;
 }
 
-.card-header{
+.card-header {
   font-size: 20px;
 }
 
-.select-pointer{
+.select-pointer {
   cursor: pointer;
 }

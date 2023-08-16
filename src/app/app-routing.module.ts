@@ -18,29 +18,37 @@ import {customerGuard} from "./guards/authorization/customer.guard";
 import {providerGuard} from "./guards/authorization/provider.guard";
 
 const routes: Routes = [
-  {path:'', component: HomeComponent},
-  {path:'sign-up', component: SignUpComponent, canActivate: [signedOutGuard]},
-  {path:'sign-in', component: SignInComponent, canActivate: [signedOutGuard]},
-  {path:'admin', canActivate: [signedInGuard], canActivateChild: [adminGuard], children: [
-      {path:'users', component: UsersComponent},
-      {path:'update-user', component: UpdateUserComponent},
-      {path:'add-service', component: AddServiceComponent},
-      {path:'services', component: ServiceComponent},
-    ]},
-  {path: 'customer', canActivate: [signedInGuard], canActivateChild: [customerGuard], children: [
-      {path:'services', component: ServiceComponent},
-      {path:'bookings', component: ListBookingComponent},
-      {path:'book', component: AddBookingComponent},
-    ]},
-  {path: 'provider', canActivate: [signedInGuard], canActivateChild: [providerGuard], children: [
-      {path:'services', component: ServiceComponent},
-      {path:'registered-services', component: RegisteredServicesComponent},
-      {path:'bookings', component: ListBookingComponent},
-    ]},
-  {path:'**', component: NotFoundComponent}
+  {path: '', component: HomeComponent},
+  {path: 'sign-up', component: SignUpComponent, canActivate: [signedOutGuard]},
+  {path: 'sign-in', component: SignInComponent, canActivate: [signedOutGuard]},
+  {
+    path: 'admin', canActivate: [signedInGuard], canActivateChild: [adminGuard], children: [
+      {path: 'users', component: UsersComponent},
+      {path: 'update-user', component: UpdateUserComponent},
+      {path: 'add-service', component: AddServiceComponent},
+      {path: 'services', component: ServiceComponent},
+    ]
+  },
+  {
+    path: 'customer', canActivate: [signedInGuard], canActivateChild: [customerGuard], children: [
+      {path: 'services', component: ServiceComponent},
+      {path: 'bookings', component: ListBookingComponent},
+      {path: 'book', component: AddBookingComponent},
+    ]
+  },
+  {
+    path: 'provider', canActivate: [signedInGuard], canActivateChild: [providerGuard], children: [
+      {path: 'services', component: ServiceComponent},
+      {path: 'registered-services', component: RegisteredServicesComponent},
+      {path: 'bookings', component: ListBookingComponent},
+    ]
+  },
+  {path: '**', component: NotFoundComponent}
 ];
+
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule]
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

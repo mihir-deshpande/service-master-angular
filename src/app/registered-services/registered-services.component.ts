@@ -8,7 +8,9 @@ import {Service, ServiceService} from "../services/service.service";
 })
 export class RegisteredServicesComponent implements OnInit {
   services: Service[] = [];
-  constructor(private serviceService: ServiceService) {}
+
+  constructor(private serviceService: ServiceService) {
+  }
 
   ngOnInit(): void {
     this.serviceService.getRegisteredServices().subscribe({

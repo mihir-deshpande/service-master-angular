@@ -2,7 +2,6 @@ import {Component} from '@angular/core';
 import {User, UserService} from "../services/user.service";
 import {FormControl, FormGroup, Validators} from "@angular/forms";
 import {userTypes, userTypeValidator} from "../sign-up/sign-up.component";
-import {HttpClient} from "@angular/common/http";
 
 @Component({
   selector: 'app-update-user',
@@ -19,8 +18,10 @@ export class UpdateUserComponent {
     password: new FormControl<string>(this.user.password, [Validators.required]),
     type: new FormControl<string>(this.user.type, [Validators.required, userTypeValidator])
   })
+  protected readonly userTypes = userTypes;
 
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) {
+  }
 
   updateUser() {
     if (this.updateUserForm.valid) {
@@ -45,6 +46,4 @@ export class UpdateUserComponent {
       alert("Invalid form")
     }
   }
-
-  protected readonly userTypes = userTypes;
 }

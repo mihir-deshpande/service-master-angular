@@ -5,7 +5,7 @@
         <div class="card-body px-sm-5 px-4">
           <div class="row text-center">
             <div class="col-12">
-              <img src="assets/images/service-master-logo.png" alt="logo" class="mt-3 mb-2 w-50" />
+              <img alt="logo" class="mt-3 mb-2 w-50" src="assets/images/service-master-logo.png"/>
             </div>
           </div>
           <div class="row text-center">
@@ -14,48 +14,50 @@
               <p class="generic-paragraph">We're glad that you're here.</p>
             </div>
           </div>
-          <form [formGroup]="signUpForm" (ngSubmit)="signUp()">
+          <form (ngSubmit)="signUp()" [formGroup]="signUpForm">
             <div class="row">
               <div class="col-12">
                 <div class="form-group mb-4">
-                  <label for="firstName" class="mb-3 input-label">First Name</label>
-                  <input type="text" formControlName="firstName" id="firstName" class="form-control input-field" />
+                  <label class="mb-3 input-label" for="firstName">First Name</label>
+                  <input class="form-control input-field" formControlName="firstName" id="firstName" type="text"/>
                   <div *ngIf="signUpForm.controls.firstName.touched && signUpForm.controls.firstName.errors">
                     <span style="color: red">* First name is required</span>
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="lastName" class="mb-3 input-label">Last Name</label>
-                  <input type="text" formControlName="lastName" id="lastName" class="form-control input-field" />
+                  <label class="mb-3 input-label" for="lastName">Last Name</label>
+                  <input class="form-control input-field" formControlName="lastName" id="lastName" type="text"/>
                   <div *ngIf="signUpForm.controls.lastName.touched && signUpForm.controls.lastName.errors">
                     <span style="color: red">* Last name is required</span>
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="email" class="mb-3 input-label">Email</label>
-                  <input type="email" formControlName="email" id="email" class="form-control input-field" />
+                  <label class="mb-3 input-label" for="email">Email</label>
+                  <input class="form-control input-field" formControlName="email" id="email" type="email"/>
                   <div *ngIf="signUpForm.controls.email.touched && signUpForm.controls.email.errors">
                     <span style="color: red">* Email is required</span>
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="password" class="mb-3 input-label">Password</label>
-                  <input type="password" formControlName="password" id="password" class="form-control input-field" />
+                  <label class="mb-3 input-label" for="password">Password</label>
+                  <input class="form-control input-field" formControlName="password" id="password" type="password"/>
                   <div *ngIf="signUpForm.controls.password.touched && signUpForm.controls.password.errors">
                     <span style="color: red">* Password is required</span>
                   </div>
                 </div>
                 <div class="form-group mb-4">
-                  <label for="type" class="mb-3 input-label">Type</label>
-                  <select formControlName="type" id="type" class="form-control input-field">
+                  <label class="mb-3 input-label" for="type">Type</label>
+                  <select class="form-control input-field" formControlName="type" id="type">
                     <option selected>Select</option>
                     <option *ngFor="let userType of userTypes" [value]="userType">{{userType}}</option>
                   </select>
                   <div *ngIf="signUpForm.controls.type.touched && signUpForm.controls.type.errors">
-                  <span style="color: red">* Type is required</span>
+                    <span style="color: red">* Type is required</span>
+                  </div>
                 </div>
-                </div>
-                <button type="submit" [disabled]="signUpForm.invalid" class="btn btn-primary col-12 mt-2 mb-4 btn-service-master-bg text-dark">
+                <button [disabled]="signUpForm.invalid"
+                        class="btn btn-primary col-12 mt-2 mb-4 btn-service-master-bg text-dark"
+                        type="submit">
                   Sign Up
                 </button>
               </div>

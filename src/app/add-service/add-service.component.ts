@@ -9,7 +9,14 @@ import {FormControl, FormGroup, Validators} from "@angular/forms";
 })
 export class AddServiceComponent implements OnInit {
   services: Service[] = []; // Initialize the services array
-  constructor(private serviceService: ServiceService) {}
+  addServiceForm = new FormGroup({
+    name: new FormControl<string>('', [Validators.required]),
+    description: new FormControl<string>('', [Validators.required]),
+    providers: new FormControl<string>(''),
+  });
+
+  constructor(private serviceService: ServiceService) {
+  }
 
   ngOnInit(): void {
     // Call the service to get the services
@@ -22,13 +29,6 @@ export class AddServiceComponent implements OnInit {
       }
     });
   } // Inject the ServiceService
-
-  addServiceForm = new FormGroup({
-    name: new FormControl<string>('', [Validators.required]),
-    description: new FormControl<string>('', [Validators.required]),
-    providers: new FormControl<string>(''),
-  });
-
 
   handleDelete(_id: string) {
     this.serviceService.deleteService(_id).subscribe({

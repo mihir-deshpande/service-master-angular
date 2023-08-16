@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { BookingService, Booking } from '../../services/booking.service';
-import { AuthService } from '../../services/auth.service';
-import { environment } from '../../../environments/environment';
+import {Component, OnInit} from '@angular/core';
+import {Booking, BookingService} from '../../services/booking.service';
+import {AuthService} from '../../services/auth.service';
+import {environment} from '../../../environments/environment';
 
 @Component({
   selector: 'app-list-booking',
@@ -15,8 +15,10 @@ export class ListBookingComponent implements OnInit {
   loading = true;
 
   rescheduleVisible: { [key: string]: boolean } = {};
+  protected readonly environment = environment;
 
-  constructor(private bookingService: BookingService, private authService: AuthService) {}
+  constructor(private bookingService: BookingService, private authService: AuthService) {
+  }
 
   ngOnInit(): void {
     this.fetchBookings();
@@ -46,6 +48,4 @@ export class ListBookingComponent implements OnInit {
       this.rescheduleVisible[id] = false;
     });
   }
-
-  protected readonly environment = environment;
 }
