@@ -4,7 +4,7 @@ Service Master is a user-friendly application that allows homeowners to easily b
 
 [Angular front-end](https://service-master-angular.web.app/)
 
-[Express back-end](https://service-master-api.cyclic.app)
+[Express back-end](https://service-master-be.onrender.com)
 
 ## Features
 
